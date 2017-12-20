@@ -1,76 +1,118 @@
 'use strict';
 
-//var getPics = document.getElementsByClassName('pics');
-var pictures = [];
-var allcounter = 0;
-var allStuff = ['img/bag.jpg','img/banana.jpg','img/bathroom.jpg','img/boots.jpg','img/breakfast.jpg','img/bubblegum.jpg','img/chair.jpg','img/cthulhu.jpg','img/dog-duck.jpg','img/dragon.jpg','img/dragon.jpg','img/pen.jpg','img/pet-sweep.jpg','img/scissors.jpg','img/shark.jpg','img/sweep.png','img/tauntaun.jpg','img/unicorn.jpg','img/usb.gif','img/water-can.jpg','img/wine-glass.jpg'];
+// Array of all images
+var allStuff = ['bag.jpg','banana.jpg','bathroom.jpg','boots.jpg','breakfast.jpg','bubblegum.jpg','chair.jpg','cthulhu.jpg','dog-duck.jpg','dragon.jpg','dragon.jpg','pen.jpg','pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','usb.gif','water-can.jpg','wine-glass.jpg'];
+// Array of all the objects stored with data
+var allPictureObjects = [];
 
 //stuff.allStuff = [];
 // need to figure out how to get name and filepath from allStuff above.
 // how do I tie allStuff to the functions below.
 
-function Stuff(name,filepath){
-  this.name = name;
-  this.filepath = filepath;
-  this.name = filepath.split('/')[1].split('.')[0];
+function ImagesConstructor(filepath){
+  this.name = filepath.split('.')[0];
+  this.filepath = 'img/' + filepath;
   this.numClicks = 0;
-  this.numShown = false;
-  Stuff.allStuff.push(this);
+  this.numShown = 0;
+  allPictureObjects.push(this);
 }
 
-var newStuff (){
-  for(var i = 0, i < allStuff.length, i++){
-  new Stuff(allStuff[i]);
+
+var createPicturesArray = function(){
+  for(var i = 0; i < allStuff.length; i++){
+    new ImagesConstructor(allStuff[i]);
   }
-}
+  console.log('allPictureObjects :: ', allPictureObjects);
+};
 
-var pick6img = function() {
-  var counter = 0;
-  var images = [];
-  while (counter < 6){
-    var index = [Math.floor(Math.random() * allStuff.length)];
-    var imageRun = pictures[index];
-    //console.log(imagerun)
-    if (imageRun.shown === false){
-      imageRun.numShown++;
-      counter++;
-      imageRun.shown = true;
-      images.push(imageRun);
-      console.log(images);
-    }
+// Call the ImagesConstructor to create an array of all the objects (stored in allPictureObjects array)
+createPicturesArray();
+
+// variables to the images ids (they are now global)
+var placeOne = document.getElementById('placeOne');
+var placeTwo = document.getElementById('placeTwo');
+var placeThree = document.getElementById('placeThree');
+
+var randOne, randTwo, randThree;
+
+// Shows the images on the page
+var showImages = function(){
+  // Random number between 0-20 for placeOne
+  randOne = Math.floor(Math.random() * allStuff.length);
+  // Display randome images
+  placeOne.src = allPictureObjects[randOne].filepath;
+  // Add one to the numShown counter in the allPictureObjects array
+  allPictureObjects[randOne].numShown += 1;
+
+
+  randTwo = Math.floor(Math.random() * allStuff.length);
+  while (randOne === randTwo) {
+    randTwo = Math.floor(Math.random() * allStuff.length);
+  };
+  placeTwo.src = allPictureObjects[randTwo].filepath;
+  allPictureObjects[randTwo].numShown += 1;
+
+
+  randThree = Math.floor(Math.random() * allStuff.length);
+  while (randOne === randThree || randTwo === randThree) {
+    randThree = Math.floor(Math.random() * allStuff.length);
   }
+  placeThree.src = allPictureObjects[randThree].filepath;
+  allPictureObjects[randThree].numShown += 1;
 
-  for (var i = 0; i < pictures.length, i++);
-    if (i !== index){
-      pictures[i].shown = false;
-    }
+  console.log([randOne, randTwo, randThree]);
+};
+
+// Call showImages function
+showImages();
+
+
+// OLD WAY
+// placeOne.addEventListener('click', showImages);
+
+var counter = 0;
+
+// Event Listeners when images are clicked
+placeOne.addEventListener('click', function(){
+  allPictureObjects[randOne].numClicks += 1;
+  counter += 1;
+  if (counter >= 10) {
+    // Remove the images
+    document.getElementById('imageHolder').remove();
+    // Collect Data
+    collectData();
+    console.log('numberOfTimesShown :: ', numberOfTimesShown);
+    console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
+    // Show chart
   }
-  return images;
-}
+  showImages();
+});
+
+placeTwo.addEventListener('click', function(){
+  allPictureObjects[randTwo].numClicks += 1;
+  counter += 1;
+  showImages();
+});
+
+placeThree.addEventListener('click', function(){
+  allPictureObjects[randThree].numClicks += 1;
+  counter += 1;
+  showImages();
+});
+
+var numberOfTimesShown = [];
+var numberOfTimesClicked = [];
+
+var collectData = function() {
+  for (var i = 0; i < allPictureObjects.length; i++) {
+    numberOfTimesShown.push(allPictureObjects[i].numShown);
+    numberOfTimesClicked.push(allPictureObjects[i].numClicks);
+  };
+};
 
 
-function begining(){
-  Stuff();
-  placeOne = document.getElementById('placeOne').innerHTML = "img src=\"img/" + pictures[0];
-  placeTwo = document.getElementById('placeTwo').innerHTML = "img src=\"img/" + pictures[1];
-  placeThree = document.getElementById('placeThree').innerHTML = "img src=\"img/" + pictures[2];
-}
-
-
-function render (){
-  var images = pick6img();
-  document.getElementById('placeOne').innerHTML = "<"img src=\"img/" + images[0]>;"
-  document.getElementById('placeTwo').innerHTML = "<"img src=\"img/" + images[1]>;"
-  document.getElementById('placeThree').innerHTML = "<"img src=\"img/" + images[2]>;"
-}
-placeOne.addEventListner('click',render);
-placeTwo.addEventListener('click',render);
-placeThree.addEventListener('click',render);
-
-function times({
-  while (gcounter<25){
-    render()
-    }
-}
-beginning();
-times();
+// var myBarChart = new Chart(ctx, {
+//     type: 'bar',
+//     data: data,
+//     options: options
+// });

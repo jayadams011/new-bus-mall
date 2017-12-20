@@ -11,11 +11,13 @@
 	<header>
 		<h1>Bus Mall Marketing Survey...</h1>
 	</header>
-  <main>
-	      <img id = "placeOne" class="pics"  alt=oneclick="addVote1()">
-		    <img id = "placeTwo" class="pics"  alt=oneclick="addVote2()">
-		    <img id = "placeThree" class="pics" alt=oneclick="addVote3()">
+  <main id="imageHolder">
+	      <img id="placeOne" class="pics" src="">
+		    <img id="placeTwo" class="pics" src="">
+		    <img id="placeThree" class="pics"  src="">
 	 </main>
+
+   <canvas id="canvas" width="300" height="300"></canvas>
 
 	<footer>
 		<h4>Plaese make 25 selections</h4>
@@ -23,6 +25,7 @@
 	</footer>
 
   <script src = "app.js"></script>
+  <script src="vendors/Chart.bundle.min.js" type="text/javascript"></script>
 </body>
 
 </html>
