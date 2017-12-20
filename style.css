@@ -27,11 +27,26 @@ main {
 	outline-style: solid;
   outline-color: #black;
 }
-
   .pics:last-child {
     margin-right: 0px;
 }
 
+.canvas {
+	width: 450px;
+	heigth: 300px;
+	}
+.footer {
+   position: absolute;
+   right: 0;
+   left: 0;
+   padding: 20px;
+   height: 20px;
+   font-family: sans-serif;
+   color: gray;
+   text-align: center;
+   font-size: 10;
+ }
+/*
 footer {
 	clear: both;
 	padding-top: 30px;
