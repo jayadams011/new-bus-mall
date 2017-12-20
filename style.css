@@ -32,9 +32,10 @@ main {
 }
 
 .canvas {
-	width: 450px;
-	heigth: 300px;
+	width: 200;
+	heigth: 300;
 	}
+
 .footer {
    position: absolute;
    right: 0;

@@ -32,6 +32,7 @@ createPicturesArray();
 var placeOne = document.getElementById('placeOne');
 var placeTwo = document.getElementById('placeTwo');
 var placeThree = document.getElementById('placeThree');
+var ctx = document.getElementById ('chart').getContext('2d');
 
 var randOne, randTwo, randThree;
 
@@ -84,6 +85,7 @@ placeOne.addEventListener('click', function(){
     console.log('numberOfTimesShown :: ', numberOfTimesShown);
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
+
   }
   showImages();
 });
@@ -99,6 +101,7 @@ placeTwo.addEventListener('click', function(){
     console.log('numberOfTimesShown :: ', numberOfTimesShown);
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
+
   }
   showImages();
 });
@@ -114,6 +117,7 @@ placeThree.addEventListener('click', function(){
     console.log('numberOfTimesShown :: ', numberOfTimesShown);
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
+    document.getElementById('chart');
   }
   showImages();
 });
@@ -137,9 +141,9 @@ var collectData = function() {
 
 var canvas = document.getElementById('chart');
 var ctx = canvas.getContext('2d');
-var chart = new Chart(ctx, {
+var showMyChart = new Chart(ctx, {
 
-  type: 'bar',
+  type: 'horizontalBar',
   data: {
     labels: ['allPictureObjects[i]'],
     datasets: [{
@@ -164,7 +168,9 @@ var chart = new Chart(ctx, {
       borderWidth: 1
     }]
   },
+  maintainAspectRatio: false,
   options: {
+    responsive: false,
     scales: {
       yAxes: [{
         ticks: {
