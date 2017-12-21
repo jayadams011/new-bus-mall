@@ -5,6 +5,14 @@ var allStuff = ['bag.jpg','banana.jpg','bathroom.jpg','boots.jpg','breakfast.jpg
 // Array of all the objects stored with data
 var allPictureObjects = [];
 
+var list = [];
+if (localStorage.list) {
+  var list = JSON.parse(localStorage.list);
+} else {
+  var list = [];
+
+}
+
 //stuff.allStuff = [];
 // need to figure out how to get name and filepath from allStuff above.
 // how do I tie allStuff to the functions below.
@@ -80,6 +88,7 @@ placeOne.addEventListener('click', function(){
   counter += 1;
   if (counter >= 25) {
     // Remove the images
+    save();
     document.getElementById('imageHolder').remove();
     // Collect Data
     collectData();
@@ -87,7 +96,7 @@ placeOne.addEventListener('click', function(){
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
     showMyChart();
-    showMyCharttwo ()
+    showMyCharttwo ();
 
 
   }
@@ -99,6 +108,7 @@ placeTwo.addEventListener('click', function(){
   counter += 1;
   if (counter >= 25) {
     // Remove the images
+    save();
     document.getElementById('imageHolder').remove();
     // Collect Data
     collectData();
@@ -106,7 +116,7 @@ placeTwo.addEventListener('click', function(){
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
     showMyChart();
-    showMyCharttwo ()
+    showMyCharttwo ();
   }
   showImages();
 });
@@ -116,15 +126,16 @@ placeThree.addEventListener('click', function(){
   counter += 1;
   if (counter >= 25) {
     // Remove the images
+    save();
     document.getElementById('imageHolder').remove();
-        // Collect Data
+    // Collect Data
     collectData();
     console.log('numberOfTimesShown :: ', numberOfTimesShown);
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
     document.getElementById('chart');
     showMyChart();
-    showMyCharttwo ()
+    showMyCharttwo ();
   }
   showImages();
 });
@@ -240,3 +251,7 @@ function showMyCharttwo (){
     }
   });
 };
+
+function save(){
+  localStorage.list = JSON.stringify(allPictureObjects);
+}
