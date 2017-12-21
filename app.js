@@ -87,6 +87,7 @@ placeOne.addEventListener('click', function(){
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
     showMyChart();
+    showMyCharttwo ()
 
 
   }
@@ -105,6 +106,7 @@ placeTwo.addEventListener('click', function(){
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
     showMyChart();
+    showMyCharttwo ()
   }
   showImages();
 });
@@ -122,6 +124,7 @@ placeThree.addEventListener('click', function(){
     // Show chart
     document.getElementById('chart');
     showMyChart();
+    showMyCharttwo ()
   }
   showImages();
 });
@@ -133,6 +136,7 @@ function numberOfTimesClickedOut(){
   return numberOfTimesClicked;
 };
 numberOfTimesClickedOut();
+
 
 
 var collectData = function() {
@@ -149,89 +153,90 @@ var collectData = function() {
 //     options: options
 // });
 
-var canvas = document.getElementById('chart1');
+//var canvas = document.getElementById('chart1');
 //var ctx = canvas.getContext('2d');
 function showMyChart (){
-  console.log('INSIDE CHART', numberOfTimesClicked)
-   new Chart(ctx, {
+  console.log('INSIDE CHART', numberOfTimesClicked);
+  new Chart(ctx, {
 
-  type: 'bar',
-  data: {
-    labels:['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'],
-    datasets: [{
-      label: ['Times Clicked'],
-      data: numberOfTimesClicked,
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1
-    }]
-  },
-  maintainAspectRatio: true,
-  options: {
-    responsive: true,
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero:true
-        }
+    type: 'bar',
+    data: {
+      labels:['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'],
+      datasets: [{
+        label: ['Times Clicked'],
+        data: numberOfTimesClicked,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
       }]
+    },
+    maintainAspectRatio: true,
+    options: {
+      responsive: true,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
     }
-  }
-})
+  });
 };
 
-canvas = document.getElementById('chart2');
-//ctx = canvas.getContext('2d');
-//showMyChart = new Chart(ctx, {
+function showMyCharttwo (){
+  console.log('INSIDE CHART', numberOfTimesShown);
+  new Chart(ctx, {
 
-//   type: 'bar',
-//   data: {
-//     labels: ['banana','boot','bag','breakfast'],
-//     datasets: [{
-//       label: ['Times Shown'],
-//       data: numberOfTimesClickedOut(),
-//       backgroundColor: [
-//         'rgba(255, 99, 132, 0.2)',
-//         'rgba(54, 162, 235, 0.2)',
-//         'rgba(255, 206, 86, 0.2)',
-//         'rgba(75, 192, 192, 0.2)',
-//         'rgba(153, 102, 255, 0.2)',
-//         'rgba(255, 159, 64, 0.2)'
-//       ],
-//       borderColor: [
-//         'rgba(255,99,132,1)',
-//         'rgba(54, 162, 235, 1)',
-//         'rgba(255, 206, 86, 1)',
-//         'rgba(75, 192, 192, 1)',
-//         'rgba(153, 102, 255, 1)',
-//         'rgba(255, 159, 64, 1)'
-//       ],
-//       borderWidth: 1
-//     }]
-//   },
-//   maintainAspectRatio: true,
-//   options: {
-//     responsive: true,
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero:true
-//         }
-//       }]
-//     }
-//   }
-// });
+    type: 'bar',
+    data: {
+      labels:['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'],
+      datasets: [{
+        label: ['Times Shown'],
+        data: numberOfTimesShown,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    maintainAspectRatio: false,
+    options: {
+      responsive: false,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+};

@@ -38,6 +38,7 @@ main {
 	}
 
 	.canvas2 {
+		float:left;
 		width: 200;
 		heigth: 300;
 
