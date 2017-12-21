@@ -31,10 +31,17 @@ main {
     margin-right: 0px;
 }
 
-.canvas {
-	width: 200;
-	heigth: 300;
+.canvas1 {
+	width: 200px;
+	heigth: 300px;
+	float:left;
 	}
+
+	.canvas2 {
+		width: 200;
+		heigth: 300;
+
+		}
 
 .footer {
    position: absolute;

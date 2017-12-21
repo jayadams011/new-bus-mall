@@ -32,7 +32,8 @@ createPicturesArray();
 var placeOne = document.getElementById('placeOne');
 var placeTwo = document.getElementById('placeTwo');
 var placeThree = document.getElementById('placeThree');
-var ctx = document.getElementById ('chart').getContext('2d');
+var ctx = document.getElementById ('chart1','chart2').getContext('2d');
+
 
 var randOne, randTwo, randThree;
 
@@ -85,6 +86,8 @@ placeOne.addEventListener('click', function(){
     console.log('numberOfTimesShown :: ', numberOfTimesShown);
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
+    showMyChart();
+
 
   }
   showImages();
@@ -101,7 +104,7 @@ placeTwo.addEventListener('click', function(){
     console.log('numberOfTimesShown :: ', numberOfTimesShown);
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
-
+    showMyChart();
   }
   showImages();
 });
@@ -112,18 +115,25 @@ placeThree.addEventListener('click', function(){
   if (counter >= 25) {
     // Remove the images
     document.getElementById('imageHolder').remove();
-    // Collect Data
+        // Collect Data
     collectData();
     console.log('numberOfTimesShown :: ', numberOfTimesShown);
     console.log('numberOfTimesClicked :: ', numberOfTimesClicked);
     // Show chart
     document.getElementById('chart');
+    showMyChart();
   }
   showImages();
 });
 
 var numberOfTimesShown = [];
 var numberOfTimesClicked = [];
+
+function numberOfTimesClickedOut(){
+  return numberOfTimesClicked;
+};
+numberOfTimesClickedOut();
+
 
 var collectData = function() {
   for (var i = 0; i < allPictureObjects.length; i++) {
@@ -132,23 +142,25 @@ var collectData = function() {
   };
 };
 
-
+//var dataStringified = JSON.stringify(numberOfTimesClicked);
 // var myBarChart = new Chart(ctx, {
 //     type: 'bar',
 //     data: data,
 //     options: options
 // });
 
-var canvas = document.getElementById('chart');
-var ctx = canvas.getContext('2d');
-var showMyChart = new Chart(ctx, {
+var canvas = document.getElementById('chart1');
+//var ctx = canvas.getContext('2d');
+function showMyChart (){
+  console.log('INSIDE CHART', numberOfTimesClicked)
+   new Chart(ctx, {
 
-  type: 'horizontalBar',
+  type: 'bar',
   data: {
-    labels: ['allPictureObjects[i]'],
+    labels:['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'],
     datasets: [{
       label: ['Times Clicked'],
-      data: ['numberOfTimesShown[i]'],
+      data: numberOfTimesClicked,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -168,9 +180,9 @@ var showMyChart = new Chart(ctx, {
       borderWidth: 1
     }]
   },
-  maintainAspectRatio: false,
+  maintainAspectRatio: true,
   options: {
-    responsive: false,
+    responsive: true,
     scales: {
       yAxes: [{
         ticks: {
@@ -179,4 +191,47 @@ var showMyChart = new Chart(ctx, {
       }]
     }
   }
-});
+})
+};
+
+canvas = document.getElementById('chart2');
+//ctx = canvas.getContext('2d');
+//showMyChart = new Chart(ctx, {
+
+//   type: 'bar',
+//   data: {
+//     labels: ['banana','boot','bag','breakfast'],
+//     datasets: [{
+//       label: ['Times Shown'],
+//       data: numberOfTimesClickedOut(),
+//       backgroundColor: [
+//         'rgba(255, 99, 132, 0.2)',
+//         'rgba(54, 162, 235, 0.2)',
+//         'rgba(255, 206, 86, 0.2)',
+//         'rgba(75, 192, 192, 0.2)',
+//         'rgba(153, 102, 255, 0.2)',
+//         'rgba(255, 159, 64, 0.2)'
+//       ],
+//       borderColor: [
+//         'rgba(255,99,132,1)',
+//         'rgba(54, 162, 235, 1)',
+//         'rgba(255, 206, 86, 1)',
+//         'rgba(75, 192, 192, 1)',
+//         'rgba(153, 102, 255, 1)',
+//         'rgba(255, 159, 64, 1)'
+//       ],
+//       borderWidth: 1
+//     }]
+//   },
+//   maintainAspectRatio: true,
+//   options: {
+//     responsive: true,
+//     scales: {
+//       yAxes: [{
+//         ticks: {
+//           beginAtZero:true
+//         }
+//       }]
+//     }
+//   }
+// });
